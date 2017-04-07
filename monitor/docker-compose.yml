@@ -22,3 +22,15 @@ grafana:
     - INFLUXDB_NAME=rspengine
     - INFLUXDB_USER=root
     - INFLUXDB_PASS=root
+
+notebook:
+  image: jupyter/minimal-notebook
+  links:
+    - influxsrv:influxsrv
+    - grafana:grafana
+  ports:
+    8080:8888
+  volumes:
+    - /home/rspdev/rsplib/:/home/jovyan/work
+    - resultsdata:/home/jovyan/work/data
+
